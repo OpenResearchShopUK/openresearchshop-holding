@@ -20,9 +20,9 @@
        images/martin-pinder.jpg         - Chief of Staff photo
        images/logo-business-sheffield.png
        images/logo-uk-government.png
-       images/logo-be-emerge.png
+       images/logo-emerge.jpg
        images/logo-cooper-project.png
-       images/logo-Sheffield-Technology-Parks.png
+       images/logo-sheffield-tech-parks.png
      Until a file exists, the site shows a styled placeholder automatically. -->
 <script>
   function imgFallback(el){
@@ -548,14 +548,14 @@
         </div>
         <div class="proof-item reveal">
           <div class="logo-row">
-            <img src="images/logo-be-emerge.png" alt="Emerge — Be Enterprising logo" loading="lazy" onerror="imgFallback(this)">
+            <img src="images/logo-emerge.jpg" alt="Emerge — Be Enterprising logo" loading="lazy" onerror="imgFallback(this)">
           </div>
           <p>Part of Emerge—Be Enterprising, hosted by The University of Sheffield</p>
         </div>
         <div class="proof-item reveal">
           <div class="logo-row">
             <img src="images/logo-cooper-project.png" alt="Cooper Project logo" loading="lazy" onerror="imgFallback(this)">
-            <img src="images/logo-Sheffield-Technology-Parks.png" alt="Sheffield Technology Parks logo" loading="lazy" onerror="imgFallback(this)">
+            <img src="images/logo-sheffield-tech-parks.png" alt="Sheffield Technology Parks logo" loading="lazy" onerror="imgFallback(this)">
           </div>
           <p>Incubated through Cooper at Sheffield Technology Parks, supporting deep tech in the UK</p>
         </div>
@@ -605,19 +605,9 @@
       <span class="kicker" style="color:var(--orange)">Early access</span>
       <h2 id="cta-h">Be first to explore ORS</h2>
       <p class="sub">Join our early access list. We're launching the MVP to UK institutions soon.</p>
-      <!-- Formspree: sign up free at formspree.io, create a form with recipient
-           openresearchshop@gmail.com, then replace YOUR_FORM_ID below with the real ID
-           (endpoint looks like https://formspree.io/f/abcdwxyz).
-           Until then, submissions show a confirmation but are stored only in the
-           visitor's browser - they are NOT emailed anywhere. -->
-      <form class="signup-form" id="waitlist-form" method="POST" action="https://formspree.io/f/YOUR_FORM_ID" novalidate>
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_subject" value="New ORS waitlist signup">
-        <label for="email">Email address</label>
-        <input type="email" id="email" name="email" placeholder="you@institution.ac.uk" required autocomplete="email" inputmode="email">
-        <button class="btn" type="submit">Join waitlist</button>
-      </form>
-      <p class="form-msg" id="form-msg" role="status" aria-live="polite"></p>
+      <!-- Waitlist signups are collected via Google Forms and land in the
+           openresearchshop@gmail.com account's Google Form responses. -->
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScI1f6ADIFjux67f9in9YrQkfUZr5Y2mYVYtbG9C3IoJKaUBQ/viewform?embedded=true" title="Join the ORS early access waitlist" width="100%" style="max-width: 600px; margin: 0 auto; display: block; background: #fff; border-radius: 8px;" height="400" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
       <p class="privacy">We'll never share your email. Expect 1–2 messages during early access.</p>
     </div>
   </section>
@@ -663,54 +653,6 @@
     if(e.target.tagName === "A"){
       menu.classList.remove("open");
       toggle.setAttribute("aria-expanded","false");
-    }
-  });
-
-  /* Waitlist form — posts to Formspree once YOUR_FORM_ID is replaced with a real
-     form ID; falls back to a local client-side confirmation until then. */
-  var form = document.getElementById("waitlist-form");
-  var msg = document.getElementById("form-msg");
-  var input = document.getElementById("email");
-  form.addEventListener("submit", function(e){
-    e.preventDefault();
-    var email = input.value.trim();
-    var valid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
-    if(!valid){
-      msg.textContent = "Please enter a valid email address.";
-      msg.className = "form-msg err";
-      input.focus();
-      return;
-    }
-    var ok = function(){
-      form.reset();
-      msg.textContent = "You're on the list — thank you! We'll be in touch soon.";
-      msg.className = "form-msg ok";
-    };
-    var endpoint = form.getAttribute("action");
-    if(endpoint && endpoint.indexOf("YOUR_FORM_ID") === -1 && window.fetch){
-      msg.textContent = "Sending…";
-      msg.className = "form-msg";
-      fetch(endpoint, {
-        method: "POST",
-        headers: {"Accept": "application/json"},
-        body: new FormData(form)
-      }).then(function(res){
-        if(res.ok){ ok(); }
-        else{
-          msg.textContent = "Something went wrong — please email us instead: info@openresearch.shop";
-          msg.className = "form-msg err";
-        }
-      }).catch(function(){
-        msg.textContent = "Network error — please try again or email info@openresearch.shop";
-        msg.className = "form-msg err";
-      });
-    }else{
-      try{
-        var list = JSON.parse(localStorage.getItem("ors-waitlist") || "[]");
-        if(list.indexOf(email) === -1){ list.push(email); }
-        localStorage.setItem("ors-waitlist", JSON.stringify(list));
-      }catch(err){ /* storage unavailable — confirmation still shown */ }
-      ok();
     }
   });
 
