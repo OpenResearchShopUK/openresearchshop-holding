@@ -8,11 +8,30 @@
 <meta property="og:title" content="Open Research Shop — Research funding, built for UK institutions">
 <meta property="og:description" content="Access to early-stage research IP, GBP-native settlement, institutional governance.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://openresearchshopuk.github.io/openresearchshop-holding/">
+<meta property="og:url" content="https://openresearch.shop/">
 <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 365.05 512.58"><path fill="%23F2AC57" d="M241.42,273.41c18.74,24.85,38.7,49.67,56.84,75.76,21.92,31.53,41.26,64.77,50.66,102.47,2.81,11.29,3.6,23.63,2.49,35.22-1.55,16.08-13.77,25.37-30.02,25.69-14.44.29-27.44-4.88-39.95-11.26-35.73-18.21-66.31-43.54-93.62-72.34-24.71-26.06-47.12-54.3-70.53-81.59-1.14-1.33-2.17-2.75-3.34-4.24-8.97,9.96-16.85,20.34-26.39,28.86-10.91,9.73-22.41,19.54-35.26,26.21-22.76,11.83-42.22,1.91-48.74-22.98-5.65-21.57-3.87-43.39.46-64.74C24.1,211.28,65.49,121.87,129.96,43.66c10.4-12.61,23.93-22.75,36.61-33.31,4.62-3.85,10.76-6.26,16.58-8.22,18.08-6.07,33.15.99,40.21,18.71,2.27,5.71,3.51,11.83,5.43,18.51,1.87-.09,4.09-.13,6.29-.31,24.83-2.07,49.16-.1,72.54,9.15,47.34,18.73,68.11,62.62,52.07,111.03-12.7,38.34-38.99,66.13-71.8,87.98-14.97,9.96-31.36,17.78-46.47,26.21Z"/></svg>'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Replace placeholder images with actual logos/photos in /images folder.
+     Ensure logos are 200-300px wide (PNG preferred for transparency).
+     Expected files:
+       images/ben-pinder.jpg            - CEO photo
+       images/martin-pinder.jpg         - Chief of Staff photo
+       images/logo-business-sheffield.png
+       images/logo-uk-government.png
+       images/logo-be-emerge.png
+       images/logo-cooper-project.png
+       images/logo-Sheffield-Technology-Parks.png
+     Until a file exists, the site shows a styled placeholder automatically. -->
+<script>
+  function imgFallback(el){
+    var s = document.createElement('span');
+    s.className = 'logo-ph';
+    s.textContent = el.alt.replace(/ logo$/i, '');
+    el.replaceWith(s);
+  }
+</script>
 <style>
   :root{
     --navy:#022876;
@@ -242,6 +261,15 @@
   }
   .proof-badge .dot{width:.65rem;height:.65rem;border-radius:50%;background:var(--brass);flex-shrink:0}
   .proof-item p{font-size:.92rem;color:var(--text-soft)}
+  .logo-row{display:flex;flex-wrap:wrap;align-items:center;gap:1rem;min-height:3rem}
+  .logo-row img{max-height:3rem;width:auto;max-width:12rem;object-fit:contain}
+  .logo-ph{
+    display:inline-flex;align-items:center;justify-content:center;text-align:center;
+    min-width:7.5rem;min-height:2.75rem;padding:.35rem .8rem;
+    border:1.5px dashed rgba(2,40,118,.35);border-radius:var(--radius);
+    font-size:.72rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+    color:var(--text-soft);background:rgba(2,40,118,.04);
+  }
 
   /* ---------- Team ---------- */
   .team{background:var(--mist)}
@@ -255,6 +283,10 @@
     width:3.4rem;height:3.4rem;border-radius:50%;flex-shrink:0;
     background:var(--navy);color:var(--orange);display:flex;align-items:center;justify-content:center;
     font-weight:700;font-size:1.05rem;letter-spacing:.02em;
+    position:relative;overflow:hidden;
+  }
+  .person .avatar img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%;
   }
   .person .role{font-size:.86rem;color:var(--text-soft)}
   .roles-head{margin:0 0 1.4rem;font-size:1.2rem}
@@ -505,17 +537,27 @@
         <h2 id="proof-h">Backed and supported in the UK</h2>
       </div>
       <div class="proof-row">
+        <!-- Logos: drop PNG files into /images (200-300px wide, transparent background preferred).
+             Missing files automatically render as labelled placeholder boxes. -->
         <div class="proof-item reveal">
-          <span class="proof-badge"><span class="dot" aria-hidden="true"></span>Business Sheffield</span>
+          <div class="logo-row">
+            <img src="images/logo-business-sheffield.png" alt="Business Sheffield logo" loading="lazy" onerror="imgFallback(this)">
+            <img src="images/logo-uk-government.png" alt="UK Government logo" loading="lazy" onerror="imgFallback(this)">
+          </div>
           <p>Grant recipient, Business Sheffield (UK Government-sponsored)</p>
         </div>
         <div class="proof-item reveal">
-          <span class="proof-badge"><span class="dot" aria-hidden="true"></span>Emerge — Be Enterprising</span>
+          <div class="logo-row">
+            <img src="images/logo-be-emerge.png" alt="Emerge — Be Enterprising logo" loading="lazy" onerror="imgFallback(this)">
+          </div>
           <p>Part of Emerge—Be Enterprising, hosted by The University of Sheffield</p>
         </div>
         <div class="proof-item reveal">
-          <span class="proof-badge"><span class="dot" aria-hidden="true"></span>Cooper Project</span>
-          <p>Incubated through Cooper, supporting deep tech in the UK</p>
+          <div class="logo-row">
+            <img src="images/logo-cooper-project.png" alt="Cooper Project logo" loading="lazy" onerror="imgFallback(this)">
+            <img src="images/logo-Sheffield-Technology-Parks.png" alt="Sheffield Technology Parks logo" loading="lazy" onerror="imgFallback(this)">
+          </div>
+          <p>Incubated through Cooper at Sheffield Technology Parks, supporting deep tech in the UK</p>
         </div>
       </div>
     </div>
@@ -528,29 +570,31 @@
         <span class="kicker">Team</span>
         <h2 id="team-h">Building the team</h2>
       </div>
+      <!-- Team photos: add images/ben-pinder.jpg and images/martin-pinder.jpg.
+           Until then, the initials placeholder shows automatically. -->
       <div class="team-current">
         <div class="person reveal">
-          <span class="avatar" aria-hidden="true">BP</span>
+          <span class="avatar"><img src="images/ben-pinder.jpg" alt="Ben Pinder — CEO photo" loading="lazy" onerror="this.remove()">BP</span>
           <div><strong>Ben Pinder</strong><div class="role">Founder &amp; CEO</div></div>
         </div>
         <div class="person reveal">
-          <span class="avatar" aria-hidden="true">MP</span>
+          <span class="avatar"><img src="images/martin-pinder.jpg" alt="Martin Pinder — Chief of Staff photo" loading="lazy" onerror="this.remove()">MP</span>
           <div><strong>Martin Pinder</strong><div class="role">Chief of Staff</div></div>
         </div>
       </div>
       <h3 class="roles-head reveal">Advisory board — now recruiting</h3>
       <ul class="roles">
-        <li class="role-card reveal"><strong>Chief Research Advisor</strong><a href="mailto:hello@openresearchshop.com?subject=Chief%20Research%20Advisor%20(CRA)">Join us →</a></li>
-        <li class="role-card reveal"><strong>Chief Marketing Advisor</strong><a href="mailto:hello@openresearchshop.com?subject=Chief%20Marketing%20Advisor%20(CMA)">Join us →</a></li>
-        <li class="role-card reveal"><strong>Chief Technology Advisor</strong><a href="mailto:hello@openresearchshop.com?subject=Chief%20Technology%20Advisor%20(CTA)">Join us →</a></li>
-        <li class="role-card reveal"><strong>Chief Legal Advisor</strong><a href="mailto:hello@openresearchshop.com?subject=Chief%20Legal%20Advisor%20(CLA)">Join us →</a></li>
-        <li class="role-card reveal"><strong>Chief Sales Advisor</strong><a href="mailto:hello@openresearchshop.com?subject=Chief%20Sales%20Advisor%20(CSA)">Join us →</a></li>
-        <li class="role-card reveal"><strong>Chief Operations Advisor</strong><a href="mailto:hello@openresearchshop.com?subject=Chief%20Operations%20Advisor%20(COA)">Join us →</a></li>
-        <li class="role-card reveal"><strong>Chief Financial Advisor</strong><a href="mailto:hello@openresearchshop.com?subject=Chief%20Financial%20Advisor%20(CFA)">Join us →</a></li>
+        <li class="role-card reveal"><strong>Chief Research Advisor</strong><a href="mailto:openresearchshop@gmail.com?subject=Interest%20in%20Chief%20Advisor%20Role">Join us →</a></li>
+        <li class="role-card reveal"><strong>Chief Marketing Advisor</strong><a href="mailto:openresearchshop@gmail.com?subject=Interest%20in%20Chief%20Advisor%20Role">Join us →</a></li>
+        <li class="role-card reveal"><strong>Chief Technology Advisor</strong><a href="mailto:openresearchshop@gmail.com?subject=Interest%20in%20Chief%20Advisor%20Role">Join us →</a></li>
+        <li class="role-card reveal"><strong>Chief Legal Advisor</strong><a href="mailto:openresearchshop@gmail.com?subject=Interest%20in%20Chief%20Advisor%20Role">Join us →</a></li>
+        <li class="role-card reveal"><strong>Chief Sales Advisor</strong><a href="mailto:openresearchshop@gmail.com?subject=Interest%20in%20Chief%20Advisor%20Role">Join us →</a></li>
+        <li class="role-card reveal"><strong>Chief Operations Advisor</strong><a href="mailto:openresearchshop@gmail.com?subject=Interest%20in%20Chief%20Advisor%20Role">Join us →</a></li>
+        <li class="role-card reveal"><strong>Chief Financial Advisor</strong><a href="mailto:openresearchshop@gmail.com?subject=Interest%20in%20Chief%20Advisor%20Role">Join us →</a></li>
       </ul>
       <p class="team-note reveal">
         We're building an advisory board of sector leaders. These positions will grow into Chief
-        Officer roles as we scale. <a href="mailto:hello@openresearchshop.com?subject=Advisory%20board">Contact us</a> if interested.
+        Officer roles as we scale. <a href="mailto:openresearchshop@gmail.com?subject=Interest%20in%20Advisory%20Board">Contact us</a> if interested.
       </p>
     </div>
   </section>
@@ -561,7 +605,14 @@
       <span class="kicker" style="color:var(--orange)">Early access</span>
       <h2 id="cta-h">Be first to explore ORS</h2>
       <p class="sub">Join our early access list. We're launching the MVP to UK institutions soon.</p>
-      <form class="signup-form" id="waitlist-form" novalidate>
+      <!-- Formspree: sign up free at formspree.io, create a form with recipient
+           openresearchshop@gmail.com, then replace YOUR_FORM_ID below with the real ID
+           (endpoint looks like https://formspree.io/f/abcdwxyz).
+           Until then, submissions show a confirmation but are stored only in the
+           visitor's browser - they are NOT emailed anywhere. -->
+      <form class="signup-form" id="waitlist-form" method="POST" action="https://formspree.io/f/YOUR_FORM_ID" novalidate>
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="New ORS waitlist signup">
         <label for="email">Email address</label>
         <input type="email" id="email" name="email" placeholder="you@institution.ac.uk" required autocomplete="email" inputmode="email">
         <button class="btn" type="submit">Join waitlist</button>
@@ -585,13 +636,13 @@
       <a href="https://www.linkedin.com/company/open-research-shop/" aria-label="Open Research Shop on LinkedIn" rel="noopener" target="_blank">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
       </a>
-      <a href="https://github.com/OpenResearchShopUK" aria-label="Open Research Shop on GitHub" rel="noopener" target="_blank">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1.77a10.5 10.5 0 0 0-3.32 20.46c.53.1.72-.23.72-.5v-1.78c-2.92.63-3.54-1.4-3.54-1.4-.48-1.22-1.17-1.54-1.17-1.54-.95-.65.07-.64.07-.64 1.06.07 1.61 1.08 1.61 1.08.94 1.6 2.46 1.14 3.06.87.1-.68.37-1.14.66-1.4-2.33-.27-4.79-1.17-4.79-5.2 0-1.14.41-2.08 1.08-2.81-.1-.27-.47-1.34.1-2.79 0 0 .89-.28 2.9 1.08a10.05 10.05 0 0 1 5.28 0c2-1.36 2.89-1.08 2.89-1.08.58 1.45.22 2.52.11 2.79.67.73 1.08 1.67 1.08 2.81 0 4.04-2.47 4.93-4.82 5.19.38.33.72.97.72 1.96v2.9c0 .28.19.6.73.5A10.5 10.5 0 0 0 12 1.77Z"/></svg>
+      <a href="mailto:openresearchshop@gmail.com" aria-label="Email Open Research Shop">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
       </a>
     </nav>
     <div class="foot-right">
       <p>Get in touch</p>
-      <p><a href="mailto:hello@openresearchshop.com">hello@openresearchshop.com</a></p>
+      <p>Email us: <a href="mailto:openresearchshop@gmail.com">info@openresearch.shop</a></p>
     </div>
   </div>
   <p class="foot-legal">© <span id="year">2026</span> Open Research Shop Ltd. All rights reserved.</p>
@@ -615,7 +666,8 @@
     }
   });
 
-  /* Waitlist form — client-side confirmation, stored locally */
+  /* Waitlist form — posts to Formspree once YOUR_FORM_ID is replaced with a real
+     form ID; falls back to a local client-side confirmation until then. */
   var form = document.getElementById("waitlist-form");
   var msg = document.getElementById("form-msg");
   var input = document.getElementById("email");
@@ -629,14 +681,37 @@
       input.focus();
       return;
     }
-    try{
-      var list = JSON.parse(localStorage.getItem("ors-waitlist") || "[]");
-      if(list.indexOf(email) === -1){ list.push(email); }
-      localStorage.setItem("ors-waitlist", JSON.stringify(list));
-    }catch(err){ /* storage unavailable — confirmation still shown */ }
-    form.reset();
-    msg.textContent = "You're on the list — thank you! We'll be in touch soon.";
-    msg.className = "form-msg ok";
+    var ok = function(){
+      form.reset();
+      msg.textContent = "You're on the list — thank you! We'll be in touch soon.";
+      msg.className = "form-msg ok";
+    };
+    var endpoint = form.getAttribute("action");
+    if(endpoint && endpoint.indexOf("YOUR_FORM_ID") === -1 && window.fetch){
+      msg.textContent = "Sending…";
+      msg.className = "form-msg";
+      fetch(endpoint, {
+        method: "POST",
+        headers: {"Accept": "application/json"},
+        body: new FormData(form)
+      }).then(function(res){
+        if(res.ok){ ok(); }
+        else{
+          msg.textContent = "Something went wrong — please email us instead: info@openresearch.shop";
+          msg.className = "form-msg err";
+        }
+      }).catch(function(){
+        msg.textContent = "Network error — please try again or email info@openresearch.shop";
+        msg.className = "form-msg err";
+      });
+    }else{
+      try{
+        var list = JSON.parse(localStorage.getItem("ors-waitlist") || "[]");
+        if(list.indexOf(email) === -1){ list.push(email); }
+        localStorage.setItem("ors-waitlist", JSON.stringify(list));
+      }catch(err){ /* storage unavailable — confirmation still shown */ }
+      ok();
+    }
   });
 
   /* Reveal on scroll */
