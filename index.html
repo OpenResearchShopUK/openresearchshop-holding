@@ -281,6 +281,8 @@
     background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);
     padding:1.75rem;box-shadow:var(--shadow);display:flex;gap:1.1rem;align-items:center;
   }
+  .team-current > a.person{color:inherit;text-decoration:none}
+  .team-current > a.person:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
   .person .avatar{
     width:3.4rem;height:3.4rem;border-radius:50%;flex-shrink:0;
     background:var(--navy);color:var(--orange);display:flex;align-items:center;justify-content:center;
@@ -560,18 +562,18 @@
       <!-- Team photos: add images/ben-pinder.jpg and images/martin-pinder.jpg.
            Until then, the initials placeholder shows automatically. -->
       <div class="team-current">
-        <div class="person reveal">
+        <a class="person reveal" href="https://www.linkedin.com/in/ben-pinder/" aria-label="Ben Pinder — LinkedIn profile" target="_blank" rel="noopener noreferrer">
           <span class="avatar"><img src="images/ben-pinder.jpg" alt="Ben Pinder — CEO photo" loading="lazy" onerror="this.remove()">BP</span>
-          <div><strong>Ben Pinder</strong> <a href="https://www.linkedin.com/in/ben-pinder/" aria-label="Ben Pinder on LinkedIn" target="_blank" rel="noopener noreferrer">LinkedIn</a><div class="role">Founder &amp; CEO</div></div>
-        </div>
-        <div class="person reveal">
+          <div><strong>Ben Pinder</strong><div class="role">Founder &amp; CEO</div></div>
+        </a>
+        <a class="person reveal" href="https://www.linkedin.com/in/martin-pinder-465515169/" aria-label="Martin Pinder — LinkedIn profile" target="_blank" rel="noopener noreferrer">
           <span class="avatar"><img src="images/martin-pinder.jpg" alt="Martin Pinder — Chief of Staff photo" loading="lazy" onerror="this.remove()">MP</span>
-          <div><strong>Martin Pinder</strong> <a href="https://www.linkedin.com/in/martin-pinder-465515169/" aria-label="Martin Pinder on LinkedIn" target="_blank" rel="noopener noreferrer">LinkedIn</a><div class="role">Chief of Staff</div></div>
-        </div>
-        <div class="person reveal">
+          <div><strong>Martin Pinder</strong><div class="role">Chief of Staff</div></div>
+        </a>
+        <a class="person reveal" href="https://www.linkedin.com/in/ben-byford" aria-label="Benjamin Taylor-Byford — LinkedIn profile" target="_blank" rel="noopener noreferrer">
           <span class="avatar"><img src="images/benjamin-taylor-byford.jpg" alt="Benjamin Taylor-Byford" loading="lazy" onerror="this.remove()">BTB</span>
-          <div><strong>Benjamin Taylor-Byford</strong> <a href="https://www.linkedin.com/in/ben-byford" aria-label="Benjamin Taylor-Byford on LinkedIn" target="_blank" rel="noopener noreferrer">LinkedIn</a><div class="role">Chief Technology Officer</div></div>
-        </div>
+          <div><strong>Benjamin Taylor-Byford</strong><div class="role">Chief Technology Officer</div></div>
+        </a>
       </div>
       <h3 class="roles-head reveal">Advisory board — now recruiting</h3>
       <ul class="roles">
