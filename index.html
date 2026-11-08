@@ -127,13 +127,15 @@
   .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
   .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
   @media (max-width:760px){
-    .nav-toggle{display:flex}
+    .nav-inner{flex-wrap:wrap}
     .nav-links{
-      position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;
+      width:100%;flex-direction:column;align-items:stretch;
       gap:0;background:var(--navy-deep);padding:.75rem 1.5rem 1.5rem;
-      border-bottom:1px solid rgba(255,255,255,.1);display:none;
+      border-bottom:1px solid rgba(255,255,255,.1);
     }
-    .nav-links.open{display:flex}
+    .nav-ready .nav-toggle{display:flex}
+    .nav-ready .nav-links{position:absolute;top:100%;left:0;right:0;display:none}
+    .nav-ready .nav-links.open{display:flex}
     .nav-links li{border-bottom:1px solid rgba(255,255,255,.08)}
     .nav-links li:last-child{border-bottom:0;padding-top:1rem}
     .nav-links a:not(.btn){display:block;padding:.9rem 0;font-size:1.05rem}
@@ -309,20 +311,6 @@
   .cta{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-deep) 80%);color:#fff;text-align:center}
   .cta h2{color:#fff}
   .cta .sub{margin:1rem auto 2.25rem;color:rgba(255,255,255,.82);max-width:38rem}
-  .signup-form{
-    display:flex;gap:.75rem;max-width:34rem;margin:0 auto;flex-wrap:wrap;justify-content:center;
-  }
-  .signup-form label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-  .signup-form input[type="email"]{
-    flex:1 1 260px;min-height:48px;padding:.7rem 1.1rem;font-family:inherit;font-size:1rem;
-    border-radius:var(--radius);border:2px solid rgba(255,255,255,.25);
-    background:rgba(255,255,255,.1);color:#fff;
-  }
-  .signup-form input[type="email"]::placeholder{color:rgba(255,255,255,.55)}
-  .signup-form input[type="email"]:focus{outline:3px solid var(--orange);outline-offset:2px;border-color:var(--orange)}
-  .form-msg{margin-top:1.25rem;font-weight:600;min-height:1.6em}
-  .form-msg.ok{color:var(--orange)}
-  .form-msg.err{color:#ffb3b3}
   .privacy{margin:1rem auto 0;font-size:.84rem;color:rgba(255,255,255,.6);max-width:34rem}
 
   /* ---------- Footer ---------- */
@@ -348,8 +336,8 @@
   .foot-legal{max-width:var(--max);margin:2.25rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.1);font-size:.8rem;color:rgba(255,255,255,.45);text-align:center}
 
   /* ---------- Reveal on scroll ---------- */
-  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
-  .reveal.in{opacity:1;transform:none}
+  /* Content remains visible if JavaScript or animation support is unavailable. */
+  .reveal{opacity:1;transform:none}
 </style>
 </head>
 <body>
@@ -567,19 +555,22 @@
   <section class="team" id="team" aria-labelledby="team-h">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="kicker">Team</span>
-        <h2 id="team-h">Building the team</h2>
+        <h2 class="kicker" id="team-h">Team</h2>
       </div>
       <!-- Team photos: add images/ben-pinder.jpg and images/martin-pinder.jpg.
            Until then, the initials placeholder shows automatically. -->
       <div class="team-current">
         <div class="person reveal">
           <span class="avatar"><img src="images/ben-pinder.jpg" alt="Ben Pinder — CEO photo" loading="lazy" onerror="this.remove()">BP</span>
-          <div><strong>Ben Pinder</strong><div class="role">Founder &amp; CEO</div></div>
+          <div><strong>Ben Pinder</strong> <a href="https://www.linkedin.com/in/ben-pinder/" aria-label="Ben Pinder on LinkedIn" target="_blank" rel="noopener noreferrer">LinkedIn</a><div class="role">Founder &amp; CEO</div></div>
         </div>
         <div class="person reveal">
           <span class="avatar"><img src="images/martin-pinder.jpg" alt="Martin Pinder — Chief of Staff photo" loading="lazy" onerror="this.remove()">MP</span>
-          <div><strong>Martin Pinder</strong><div class="role">Chief of Staff</div></div>
+          <div><strong>Martin Pinder</strong> <a href="https://www.linkedin.com/in/martin-pinder-465515169/" aria-label="Martin Pinder on LinkedIn" target="_blank" rel="noopener noreferrer">LinkedIn</a><div class="role">Chief of Staff</div></div>
+        </div>
+        <div class="person reveal">
+          <span class="avatar"><img src="images/benjamin-taylor-byford.jpg" alt="Benjamin Taylor-Byford" loading="lazy" onerror="this.remove()">BTB</span>
+          <div><strong>Benjamin Taylor-Byford</strong> <a href="https://www.linkedin.com/in/ben-byford" aria-label="Benjamin Taylor-Byford on LinkedIn" target="_blank" rel="noopener noreferrer">LinkedIn</a><div class="role">Chief Technology Officer</div></div>
         </div>
       </div>
       <h3 class="roles-head reveal">Advisory board — now recruiting</h3>
@@ -656,20 +647,31 @@
     }
   });
 
-  /* Reveal on scroll */
+  menu.addEventListener("keydown", function(e){
+    if(e.key === "Escape" && menu.classList.contains("open")){
+      menu.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.focus();
+    }
+  });
+  document.querySelector(".site-nav").classList.add("nav-ready");
+
+  /* Reveal on scroll: animate visible content rather than hiding it in CSS. */
   var revealEls = document.querySelectorAll(".reveal");
-  if("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+  if("IntersectionObserver" in window && "animate" in Element.prototype &&
+     !window.matchMedia("(prefers-reduced-motion: reduce)").matches){
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
         if(entry.isIntersecting){
-          entry.target.classList.add("in");
+          entry.target.animate([
+            {opacity:0, transform:"translateY(22px)"},
+            {opacity:1, transform:"none"}
+          ], {duration:600, easing:"ease"});
           io.unobserve(entry.target);
         }
       });
     }, {threshold:.12});
     revealEls.forEach(function(el){ io.observe(el); });
-  }else{
-    revealEls.forEach(function(el){ el.classList.add("in"); });
   }
 
   document.getElementById("year").textContent = new Date().getFullYear();
