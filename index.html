@@ -306,6 +306,11 @@
   .cta h2{color:#fff}
   .cta .sub{margin:1rem auto 2.25rem;color:rgba(255,255,255,.82);max-width:38rem}
   .privacy{margin:1rem auto 0;font-size:.84rem;color:rgba(255,255,255,.6);max-width:34rem}
+  .privacy a{color:var(--orange);font-weight:500;text-decoration:none}
+  .privacy a:hover,.privacy a:focus-visible{text-decoration:underline}
+  .form-open{margin:.75rem auto 0;font-size:.84rem}
+  .form-open a{color:var(--orange);font-weight:500;text-decoration:none}
+  .form-open a:hover,.form-open a:focus-visible{text-decoration:underline}
 
   /* ---------- Footer ---------- */
   footer{background:var(--navy-ink);color:rgba(255,255,255,.75);padding:3rem 1.5rem 2.5rem;font-size:.9rem}
@@ -328,6 +333,8 @@
   .foot-right a{color:var(--orange);text-decoration:none;font-weight:500}
   .foot-right a:hover{text-decoration:underline}
   .foot-legal{max-width:var(--max);margin:2.25rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.1);font-size:.8rem;color:rgba(255,255,255,.45);text-align:center}
+  .foot-legal a{color:rgba(255,255,255,.7);text-decoration:none}
+  .foot-legal a:hover,.foot-legal a:focus-visible{text-decoration:underline;color:#fff}
 
   /* ---------- Reveal on scroll ---------- */
   /* Content remains visible if JavaScript or animation support is unavailable. */
@@ -579,8 +586,9 @@
       <p class="sub">Join our early access list. We're launching the MVP to UK institutions soon.</p>
       <!-- Waitlist signups are collected via Google Forms and land in the
            openresearchshop@gmail.com account's Google Form responses. -->
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScI1f6ADIFjux67f9in9YrQkfUZr5Y2mYVYtbG9C3IoJKaUBQ/viewform?embedded=true" title="Join the ORS early access waitlist" width="100%" style="max-width: 600px; margin: 0 auto; display: block; background: #fff; border-radius: 8px;" height="400" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-      <p class="privacy">We'll never share your email. Expect 1–2 messages during early access.</p>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScI1f6ADIFjux67f9in9YrQkfUZr5Y2mYVYtbG9C3IoJKaUBQ/viewform?embedded=true" title="Join the ORS early access list" width="100%" style="max-width: 600px; margin: 0 auto; display: block; background: #fff; border-radius: 8px;" height="1200" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+      <p class="form-open"><a href="https://docs.google.com/forms/d/e/1FAIpQLScI1f6ADIFjux67f9in9YrQkfUZr5Y2mYVYtbG9C3IoJKaUBQ/viewform" target="_blank" rel="noopener">Open the form in a new tab</a></p>
+      <p class="privacy">By joining the list, you agree we can email you about ORS early access. You can withdraw at any time. We won't share your details with other organisations for their marketing. See our <a href="/privacy.html">privacy notice</a>. Expect 1–2 messages during early access.</p>
     </div>
   </section>
 </main>
@@ -607,7 +615,7 @@
       <p>Email us: <a href="mailto:openresearchshop@gmail.com">info@openresearch.shop</a></p>
     </div>
   </div>
-  <p class="foot-legal">© <span id="year">2026</span> Open Research Shop Ltd. All rights reserved.</p>
+  <p class="foot-legal">© <span id="year">2026</span> Open Research Shop Ltd. All rights reserved. · <a href="/privacy.html">Privacy notice</a></p>
 </footer>
 
 <script>
